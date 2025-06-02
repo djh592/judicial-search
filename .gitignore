@@ -1,0 +1,108 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+.Python
+*.sqlite3
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# macOS
+.DS_Store
+
+# VSCode
+.vscode/
+.history/
+
+# System
+Thumbs.db
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# Compiled C/C++/Java
+*.class
+*.o
+*.so
+*.dll
+*.exe
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# Frontend build
+frontend/dist/
+frontend/build/
+frontend/.next/
+frontend/.nuxt/
+frontend/.cache/
+
+# Python test, coverage, and build
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+*.egg
+*.eggs/
+dist/
+build/
+*.manifest
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Docker
+*.pid
+
+# Corpus and data
+corpus/documents/
+corpus/documents.zip
+
+# Elasticsearch plugins (if not needed)
+ik/*.zip
+ik/*.jar
+
+# Ignore secrets/configs (if any)
+*.env
+.env.*
+
+# Ignore test outputs
+*.out
+*.tmp
+
+# Ignore backup files
+*~
+*.bak
+*.swp
+*.swo
+
+# Ignore LeCaRD cache or temp (if any)
+LeCaRD/.cache/
+LeCaRD/*.log
+
+# Ignore Python bytecode in all subfolders
+**/__pycache__/
+
+# Ignore test results
+backend/test/
+corpus/test.py
+
+# Ignore OS generated files
+*.DS_Store
