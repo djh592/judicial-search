@@ -52,40 +52,55 @@ judicial-search/
 
 ## 环境准备与运行方法
 
-### 1. 数据准备
+### 1. Python 环境配置
+
+本项目推荐使用 Conda 管理 Python 环境。你可以直接使用项目根目录下的 `environment.yml` 文件创建环境：
+
+```sh
+conda env create -f environment.yml
+conda activate judicial-search
+```
+
+如需更新依赖，可运行：
+
+```sh
+conda env update -f environment.yml
+```
+
+### 2. 数据准备
 
 1. 下载全国文书数据集（[下载链接](https://drive.google.com/file/d/1vQdX1MegFVtmoh0XCd4max5PBkep7qOh/view?usp=sharing)），解压到 `corpus/` 目录下。
 
 2. 克隆 LeCaRD 数据集到项目根目录：
 
-   ```
+   ```sh
    git clone https://github.com/myx666/LeCaRD.git
    ```
 
-### 2. 启动服务
+### 3. 启动服务
 
 1. 启动 Elasticsearch（推荐用 docker-compose）：
 
-   ```
+   ```sh
    docker-compose build
    docker-compose up -d
    ```
 
 2. 导入案例信息到 ES 索引：
 
-   ```
+   ```sh
    python -m backend.elastic.indexer
    ```
 
 3. 启动后端服务：
 
-   ```
+   ```sh
    python -m backend.app
    ```
 
 4. 启动前端服务：
 
-   ```
+   ```sh
    cd frontend
    npm install
    npm run dev

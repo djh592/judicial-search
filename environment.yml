@@ -1,0 +1,11 @@
+name: judicial-search
+channels:
+  - defaults
+dependencies:
+  - elasticsearch
+  - python=3.11
+  - tqdm
+  - elasticsearch-dsl
+  - numpy=1.26.4
+  - flask
+prefix: /home/djh592/miniconda3/envs/judicial-search
