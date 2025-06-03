@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import SearchResultList from '../components/SearchResultList';
 import PaginationBar from '../components/PaginationBar';
 import { fetchQueryResults } from '../api';
+import NavBar from '../components/NavBar';
 
 const PAGE_SIZE = 10;
 const MAX_PAGES = 100;
@@ -54,29 +55,33 @@ const SearchPage: React.FC = () => {
     };
 
     return (
-        <Box sx={{ maxWidth: 800, mx: 'auto', py: 4 }}>
-            <Typography variant="h5" gutterBottom>
-                检索结果
-            </Typography>
-            {loading ? (
-                <Box sx={{ display: 'flex', justifyContent: 'center', my: 6 }}>
-                    <CircularProgress />
-                </Box>
-            ) : results.length === 0 ? (
-                <Typography color="text.secondary" sx={{ mt: 4 }}>
-                    暂无结果
+        <>
+            <NavBar />
+            <Box sx={{ maxWidth: 800, mx: 'auto', py: 4 }}>
+
+                <Typography variant="h5" gutterBottom>
+                    检索结果
                 </Typography>
-            ) : (
-                <>
-                    <SearchResultList results={results} onItemClick={handleItemClick} />
-                    <PaginationBar
-                        page={page}
-                        totalPages={Math.min(totalPages, MAX_PAGES)}
-                        onChange={handlePageChange}
-                    />
-                </>
-            )}
-        </Box>
+                {loading ? (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', my: 6 }}>
+                        <CircularProgress />
+                    </Box>
+                ) : results.length === 0 ? (
+                    <Typography color="text.secondary" sx={{ mt: 4 }}>
+                        暂无结果
+                    </Typography>
+                ) : (
+                    <>
+                        <SearchResultList results={results} onItemClick={handleItemClick} />
+                        <PaginationBar
+                            page={page}
+                            totalPages={Math.min(totalPages, MAX_PAGES)}
+                            onChange={handlePageChange}
+                        />
+                    </>
+                )}
+            </Box>
+        </>
     );
 };
 

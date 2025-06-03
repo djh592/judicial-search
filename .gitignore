@@ -75,10 +75,6 @@ pip-delete-this-directory.txt
 corpus/documents/
 corpus/documents.zip
 
-# Elasticsearch plugins (if not needed)
-ik/*.zip
-ik/*.jar
-
 # Ignore secrets/configs (if any)
 *.env
 .env.*

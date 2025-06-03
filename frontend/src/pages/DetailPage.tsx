@@ -5,6 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import { fetchDocumentDetail } from '../api';
 import DocumentDetail from '../components/DocumentDetail';
+import NavBar from '../components/NavBar';
 
 const DetailPage: React.FC = () => {
     const { docId } = useParams<{ docId: string }>();
@@ -40,6 +41,7 @@ const DetailPage: React.FC = () => {
 
     return (
         <Box sx={{ maxWidth: 900, mx: 'auto', py: 4 }}>
+            <NavBar />
             <DocumentDetail detail={detail} />
         </Box>
     );
