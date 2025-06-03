@@ -162,7 +162,7 @@ class QueryParams:
 
 可以看到，部分参数的权重被适当条高了。我的设计是优先匹配更重要的文本，已经用户特意通过标签搜索的文本，这有助于将用户期望的结果排到更前面。
 
-后端还实现了 `QueryManager`，它的功能是缓存前端的请求（类似 Redis 的功能），让用户可以通过 `query_id` 随时请求该查询的不同内容。经过一定的时间（一小时）或者后端缓存容量满后，`query_id` 就会失效。我通过这种方法实现最基本的请求管理功能。
+后端还实现了 `QueryManager`，它的功能是缓存前端的请求（类似 Redis 的功能），让用户可以通过 `query_id` 随时请求该查询的不同内容。经过特定的时间（一小时）或者后端缓存容量满后，`query_id` 就会失效。我通过这种方法实现最基本的请求管理功能。
 
 后端与前端的交互功能通过 Flask 实现。考虑到任务的需求比较简单，我希望尽量使用轻量的框架简化实现，Flask 是一个相对不错的选择，相关代码在 `backend/app.py` 中。
 
@@ -179,15 +179,15 @@ class QueryParams:
 
 主页的展示如下：
 
-![Screenshot 2025-06-03 204404](assets\Screenshot 2025-06-03 204404.png)
+![Screenshot 2025-06-03 204404](assets/Screenshot%202025-06-03%20204404.png)
 
 查询结果页面展示如下：
 
-![Screenshot 2025-06-03 204526](assets\Screenshot 2025-06-03 204526.png)
+![Screenshot 2025-06-03 204526](assets/Screenshot%202025-06-03%20204526.png)
 
 详情页面展示如下：
 
-![Screenshot 2025-06-03 204719](assets\Screenshot 2025-06-03 204719.png)
+![Screenshot 2025-06-03 204719](assets/Screenshot%202025-06-03%20204719.png)
 
 ## 关键功能
 
@@ -197,18 +197,19 @@ class QueryParams:
 
 如果想要特定字段的查询，可打开高级检索功能：
 
-![Screenshot 2025-06-03 205331](assets\Screenshot 2025-06-03 205331.png)
+![Screenshot 2025-06-03 205331](assets/Screenshot%202025-06-03%20205331.png)
 
 ### 2. 类似案例检索
 
 全文检索支持 `.txt` 和 `.docx` 两种格式的文件，可上传案例文本，检索相似案件，也可以手动输入全文：
 
-![Screenshot 2025-06-03 205545](assets\Screenshot 2025-06-03 205545.png)
+![Screenshot 2025-06-03 205545](assets/Screenshot%202025-06-03%20205545.png)
 
-![Screenshot 2025-06-03 205557](assets\Screenshot 2025-06-03 205557.png)
+![Screenshot 2025-06-03 205557](assets/Screenshot%202025-06-03%20205557.png)
 
 结果：
-![Screenshot 2025-06-03 213749](assets\Screenshot 2025-06-03 213749.png)
+
+![Screenshot 2025-06-03 213749](assets/Screenshot%202025-06-03%20213749.png)
 
 ### 3. 标签抽取与展示
 
@@ -216,15 +217,15 @@ class QueryParams:
 
 案由查询匹配 Elasticsearch 中的 `label` 字段，由于 `label` 是 keyword，可以通过后端请求 Elasticsearch 获得所有可能的 `label` ：
 
-![Screenshot 2025-06-03 210024](assets\Screenshot 2025-06-03 210024.png)
+![Screenshot 2025-06-03 210024](assets/Screenshot%202025-06-03%20210024.png)
 
 案件名称查询专门匹配 `ajName` 字段，法院名称、审判人员和当事人匹配。
 
 这里演示一下匹配法院：
 
-![Screenshot 2025-06-03 210808](assets\Screenshot 2025-06-03 210808.png)
+![Screenshot 2025-06-03 210808](assets/Screenshot%202025-06-03%20210808.png)
 
-![Screenshot 2025-06-03 210849](assets\Screenshot 2025-06-03 210849.png)
+![Screenshot 2025-06-03 210849](assets/Screenshot%202025-06-03%20210849.png)
 
 ### 4. 查询推荐/补全
 
@@ -232,9 +233,9 @@ class QueryParams:
 
 普通检索的搜索框支持查询的推荐功能：
 
-![Screenshot 2025-06-03 214320](assets\Screenshot 2025-06-03 214320.png)
+![Screenshot 2025-06-03 214320](assets/Screenshot%202025-06-03%20214320.png)
 
-输入文字后，前端会发给后端，后端通过 Elasticsearch 的推荐功能查找推荐信息，再返回给前端显示出来。
+输入文字后，前端会把内容发给后端，后端通过 Elasticsearch 的推荐功能查找推荐信息，再返回给前端显示出来。
 
 ## 测试结果和样例分析
 
@@ -268,25 +269,25 @@ class QueryParams:
 
 关键词检索承兑汇票：
 
-![Screenshot 2025-06-03 222536](assets\Screenshot 2025-06-03 222448.png)
+![Screenshot 2025-06-03 222448](assets/Screenshot%202025-06-03%20222448.png)
 
 可以检索出金融、诈骗之类的案件。
 
-![Screenshot 2025-06-03 222511](assets\Screenshot 2025-06-03 222511.png)
+![Screenshot 2025-06-03 222511](assets/Screenshot%202025-06-03%20222511.png)
 
 翻到第五页，结果仍然相关。
 
-![Screenshot 2025-06-03 222536](assets\Screenshot 2025-06-03 222536.png)
+![Screenshot 2025-06-03 222536](assets/Screenshot%202025-06-03%20222536.png)
 
 查询详细的案情，通过全文查找：
 
-![Screenshot 2025-06-03 222956](assets\Screenshot 2025-06-03 222956.png)
+![Screenshot 2025-06-03 222956](assets/Screenshot%202025-06-03%20222956.png)
 
 可以在第一个结果中查到完全匹配的信息：
 
-![Screenshot 2025-06-03 223028](C:\Users\DJH\OneDrive\2025春\搜索与推荐技术基础\legal-search-engine\assets\Screenshot 2025-06-03 223028.png)
+![Screenshot 2025-06-03 223028](assets/Screenshot%202025-06-03%20223028.png)
 
-![Screenshot 2025-06-03 223121](C:\Users\DJH\OneDrive\2025春\搜索与推荐技术基础\legal-search-engine\assets\Screenshot 2025-06-03 223121.png)
+![Screenshot 2025-06-03 223121](assets/Screenshot%202025-06-03%20223121.png)
 
 ## 环境准备与运行方法
 
