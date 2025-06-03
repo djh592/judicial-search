@@ -47,9 +47,9 @@ export async function fetchAllLabels(): Promise<string[]> {
 }
 
 // 搜索补全建议
-export async function fetchSuggest(field: string, q: string): Promise<string[]> {
+export async function fetchSuggest(q: string): Promise<string[]> {
     const resp = await axios.get<{ suggestions: string[] }>('/api/suggest', {
-        params: { field, q }
+        params: { q }
     });
     return resp.data.suggestions;
 }

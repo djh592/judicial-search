@@ -89,7 +89,7 @@ class QueryParams:
                 }
             )
         if self.ajmc:
-            should.append({"match": {"ajName": self.ajmc}})
+            should.append({"match": {"ajName": self.ajmc, "boost": 6}})
 
         # 法院名称
         if self.fymc:

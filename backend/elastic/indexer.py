@@ -128,11 +128,7 @@ def create_index(es):
     es.indices.create(
         index=INDEX_NAME,
         body={
-            "settings": {
-                "index": {
-                    "similarity": {"custom_bm25": {"type": "BM25", "k1": 2.0, "b": 0.3}}
-                }
-            },
+            "settings": {"index": {"similarity": {"custom_bm25": {"type": "BM25"}}}},
             "mappings": {
                 "properties": {
                     "ajId": {"type": "keyword"},
@@ -153,23 +149,28 @@ def create_index(es):
                         "analyzer": "ik_smart",
                         "similarity": "custom_bm25",
                     },
+                    "ajjbqk_suggest": {"type": "completion"},  # 新增
                     "cpfxgc": {
                         "type": "text",
                         "analyzer": "ik_smart",
                         "similarity": "custom_bm25",
                     },
+                    "cpfxgc_suggest": {"type": "completion"},  # 新增
                     "pjjg": {
                         "type": "text",
                         "analyzer": "ik_smart",
                         "similarity": "custom_bm25",
                     },
+                    "pjjg_suggest": {"type": "completion"},  # 新增
                     "qw": {
                         "type": "text",
                         "analyzer": "ik_smart",
                         "similarity": "custom_bm25",
                     },
+                    "qw_suggest": {"type": "completion"},  # 新增
                     "writId": {"type": "keyword"},
                     "writName": {"type": "text", "analyzer": "ik_smart"},
+                    "writName_suggest": {"type": "completion"},  # 新增
                     "labels": {"type": "keyword"},
                 }
             },
@@ -211,11 +212,16 @@ def generate_docs(label_map):
                     "ajName": doc.get("ajName"),
                     "ajName_suggest": doc.get("ajName"),  # 新增
                     "ajjbqk": doc.get("ajjbqk"),
+                    "ajjbqk_suggest": doc.get("ajjbqk"),  # 新增
                     "cpfxgc": doc.get("cpfxgc"),
+                    "cpfxgc_suggest": doc.get("cpfxgc"),  # 新增
                     "pjjg": doc.get("pjjg"),
+                    "pjjg_suggest": doc.get("pjjg"),  # 新增
                     "qw": doc.get("qw"),
+                    "qw_suggest": doc.get("qw"),  # 新增
                     "writId": doc.get("writId"),
                     "writName": doc.get("writName"),
+                    "writName_suggest": doc.get("writName"),  # 新增
                     "labels": labels,
                     "fymc": fymc,
                     "fymc_suggest": fymc,  # 新增

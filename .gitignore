@@ -96,9 +96,5 @@ LeCaRD/*.log
 # Ignore Python bytecode in all subfolders
 **/__pycache__/
 
-# Ignore test results
-backend/test/
-corpus/test.py
-
 # Ignore OS generated files
 *.DS_Store

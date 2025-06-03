@@ -73,13 +73,31 @@ def get_all_labels():
 
 @app.route("/api/suggest", methods=["GET"])
 def suggest():
-    field = request.args.get("field")
     prefix = request.args.get("q", "")
-    if not field or not prefix:
-        return jsonify({"error": "Missing field or q"}), 400
+    if not prefix:
+        return jsonify({"suggestions": []})
     query_manager = get_query_manager()
-    suggestions = query_manager.suggest(field, prefix)
-    return jsonify({"suggestions": suggestions})
+    # 支持 suggest 的字段列表
+    suggest_fields = [
+        "ajName",
+        "fymc",
+        "spry",
+        "dsr",
+        "labels",
+        "ajjbqk",
+        "cpfxgc",
+        "pjjg",
+        "qw",
+        "writName",
+    ]
+    all_suggestions = set()
+    for field in suggest_fields:
+        try:
+            suggestions = query_manager.suggest(field, prefix)
+            all_suggestions.update(suggestions)
+        except Exception:
+            continue  # 某些字段没有suggest字段时跳过
+    return jsonify({"suggestions": list(all_suggestions)})
 
 
 if __name__ == "__main__":

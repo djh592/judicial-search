@@ -39,7 +39,7 @@ const SearchBox: React.FC<Props> = ({ onSearch }) => {
         if (value.trim()) {
             setLoading(true);
             try {
-                const result = await fetchSuggest('ajName', value);
+                const result = await fetchSuggest(value);
                 setSuggestions(result);
             } finally {
                 setLoading(false);
