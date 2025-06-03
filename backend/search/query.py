@@ -79,7 +79,12 @@ class QueryParams:
                 {
                     "multi_match": {
                         "query": self.qw,
-                        "fields": ["qw^4"],
+                        "fields": [
+                            "ajjbqk",
+                            "cpfxgc",
+                            "pjjg",
+                            "qw",
+                        ],
                     },
                 }
             )
